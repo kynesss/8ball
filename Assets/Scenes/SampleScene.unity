@@ -225,6 +225,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85a7dae97eb3274f85de7f2f273822d, type: 3}
+--- !u!1 &10524969 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442665285049275186, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
+  m_PrefabInstance: {fileID: 1847845190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &89515570
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +579,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.36102772, y: 0.4968853}
   m_EdgeRadius: 0
+--- !u!1 &193471887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4287019932198259534, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
+  m_PrefabInstance: {fileID: 1847845190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &220226257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3701,7 +3711,8 @@ PrefabInstance:
       propertyPath: cueBallPredictionMultiplier
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1442665285049275185, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
 --- !u!1 &1861519828
 GameObject:
@@ -4114,6 +4125,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1442665285049275190, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
   m_PrefabInstance: {fileID: 1847845190}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2103173680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10524969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6c79f538f5478ca5838d70981498c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDrag: 0
+  maxDrag: 0
+  dragSpeed: 0
+  strengthMultiplier: 0
+--- !u!114 &2103173681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10524969}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e560a80d09d641c2ae4b3f64cef7a76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteBall: {fileID: 1967599836}
+  sprite: {fileID: 193471887}
+--- !u!114 &2103173682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10524969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3e574c132094ce78853969edf79d542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteBall: {fileID: 1967599836}
+  sprite: {fileID: 193471887}
 --- !u!114 &2105753518 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5508644788838641784, guid: d85a7dae97eb3274f85de7f2f273822d, type: 3}
