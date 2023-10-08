@@ -10,8 +10,9 @@ namespace Cue.Movement
 
         private float _radians;
         private float _degrees;
-        
-        public Vector2 MovementDirection { get; private set; }
+
+        private Vector2 _movementDirection;
+        private Vector2 _hitDirection;
 
         private void OnEnable()
         {
@@ -20,6 +21,9 @@ namespace Cue.Movement
 
         private void Update()
         {
+            if (Input.GetMouseButtonDown(0))
+                _hitDirection = _movementDirection;
+                
             CalculateMovementDirection();
         }
 
@@ -30,12 +34,12 @@ namespace Cue.Movement
 
         private void CalculateMovementDirection()
         {
-            MovementDirection = (MouseController.GetWorldPosition() - cueBall.position).normalized;
+            _movementDirection = (MouseController.GetWorldPosition() - cueBall.position).normalized;
         }
 
         public void CalculateAngles()
         {
-            _radians = Mathf.Atan2(MovementDirection.y, MovementDirection.x);
+            _radians = Mathf.Atan2(_movementDirection.y, _movementDirection.x);
             _degrees = _radians * Mathf.Rad2Deg;
         }
 
@@ -50,10 +54,10 @@ namespace Cue.Movement
             transform.rotation = Quaternion.Euler(0f, 0f, _degrees);
         }
 
-        public void Hit(Vector2 direction, float dragStrength)
+        public void Hit(float dragStrength)
         {
             var strength = dragStrength * strengthMultiplier;
-            cueBall.AddForce(direction * strength, ForceMode2D.Impulse);
+            cueBall.AddForce(_hitDirection * strength, ForceMode2D.Impulse);
         }
     }
 }
