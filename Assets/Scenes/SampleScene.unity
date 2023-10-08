@@ -225,6 +225,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d85a7dae97eb3274f85de7f2f273822d, type: 3}
+--- !u!1 &54671932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4287019932198259534, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
+  m_PrefabInstance: {fileID: 1847845190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &54671936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54671932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08cdca31464c4a8fafcacffea89c54c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &89515570
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +413,7 @@ GameObject:
   - component: {fileID: 129234479}
   - component: {fileID: 129234480}
   m_Layer: 0
-  m_Name: ' Circle'
+  m_Name: Crosshair_Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3661,6 +3678,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4287019932198259534, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 5357696721421417564, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3701,7 +3722,8 @@ PrefabInstance:
       propertyPath: cueBallPredictionMultiplier
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1442665285049275185, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
 --- !u!1 &1847845191 stripped
 GameObject:
@@ -4148,6 +4170,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strengthMultiplier: 20
   cueBall: {fileID: 1967599836}
+--- !u!114 &2103173684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847845191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 126491d1952b4965b4d48aee3f92f0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2103173685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847845191}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bebb35de7448d29afea82686205017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2105753518 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5508644788838641784, guid: d85a7dae97eb3274f85de7f2f273822d, type: 3}

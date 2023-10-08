@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Cue
+namespace Cue.Visuals
 {
     [RequireComponent(typeof(LineRenderer))]
     public class CueCrosshair : MonoBehaviour

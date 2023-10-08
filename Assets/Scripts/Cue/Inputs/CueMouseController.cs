@@ -1,32 +1,11 @@
 ﻿using Balls;
-using Cue.Dragging;
-using Cue.Movement;
-using Medicine;
 using UnityEngine;
 
-namespace Cue
+namespace Cue.Inputs
 {
-    public class CueInputController : MonoBehaviour
+    public class CueMouseController : CueInputController
     {
-        [SerializeField] private GameObject sprite;
-        [Inject] private CueCrosshair Crosshair { get; }
-        [Inject] private CueDragHandler DragHandler { get; }
-        [Inject] private CueMovementHandler MovementHandler { get; }
-
-        private void Awake()
-        {
-            SetInteractable(true);
-        }
-
-        private void SetInteractable(bool interactable)
-        {
-            sprite.SetActive(interactable);
-            Crosshair.enabled = interactable;
-            DragHandler.enabled = interactable;
-            MovementHandler.enabled = interactable;
-        }
-
-        private void Update()
+        protected override void Update()
         {
             if (BallController.AllBallsAreStationary)
                 SetInteractable(true);
