@@ -3703,6 +3703,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
+--- !u!1 &1847845191 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442665285049275186, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
+  m_PrefabInstance: {fileID: 1847845190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1861519828
 GameObject:
   m_ObjectHideFlags: 0
@@ -4114,6 +4119,35 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1442665285049275190, guid: 8441e62b75aed4b49aff66088df00801, type: 3}
   m_PrefabInstance: {fileID: 1847845190}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2103173679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847845191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a4c2c5d465465688280e3f11c87e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDrag: 0.25
+  maxDrag: 5
+  dragSpeed: 10
+--- !u!114 &2103173682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847845191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99034a31b6c47ff8fa8ce555886b541, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strengthMultiplier: 20
+  cueBall: {fileID: 1967599836}
 --- !u!114 &2105753518 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5508644788838641784, guid: d85a7dae97eb3274f85de7f2f273822d, type: 3}

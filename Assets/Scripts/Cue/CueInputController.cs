@@ -5,9 +5,8 @@ using UnityEngine;
 
 namespace Cue
 {
-    public class CueController : MonoBehaviour
+    public class CueInputController : MonoBehaviour
     {
-        [Header("References")] 
         [SerializeField] private GameObject sprite;
 
         private CueCrosshair _crosshair;
@@ -15,43 +14,30 @@ namespace Cue
         private CueMovementHandler _movementHandler;
         
         private Vector2 _aimDirection;
-        private bool _enabled;
 
         private void Awake()
         {
-            _crosshair = GetComponent<CueCrosshair>();
+            _crosshair = GetComponent<CueCrosshair>(); //medicine
             _dragHandler = GetComponent<CueDragHandler>();
-            Enable();
+            _movementHandler = GetComponent<CueMovementHandler>();
+            
+            SetInteractable(true);
         }
 
-        private void Enable()
+        private void SetInteractable(bool interactable)
         {
-            sprite.SetActive(true);
+            sprite.SetActive(interactable);
             
-            _enabled = true;
-            _crosshair.enabled = true;
-            _dragHandler.enabled = true;
-            _movementHandler.enabled = true;
-        }
-
-        private void Disable()
-        {
-            sprite.SetActive(false);
-            
-            _enabled = false;
-            _crosshair.enabled = false;
-            _dragHandler.enabled = false;
-            _movementHandler.enabled = false;
+            _crosshair.enabled = interactable;
+            _dragHandler.enabled = interactable;
+            _movementHandler.enabled = interactable;
         }
 
         private void Update()
         {
-            if (BallController.AllBallsAreStationary && !_enabled)
-                Enable();
-
-            if (!_enabled)
-                return;
-
+            if (BallController.AllBallsAreStationary)
+                SetInteractable(true);
+            
             var dragStrength = _dragHandler.DragStrength;
             
             if (Input.GetMouseButtonDown(0))
@@ -70,7 +56,7 @@ namespace Cue
                 _dragHandler.EndDrag();
                 _movementHandler.Hit(_aimDirection, dragStrength);
                 
-                Disable();
+                SetInteractable(false);
             }
             else
                 _movementHandler.HandleMovement(dragStrength);
