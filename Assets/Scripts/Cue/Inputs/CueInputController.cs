@@ -1,6 +1,7 @@
-﻿using Cue.Dragging;
+﻿using Balls;
+using Cue.Dragging;
 using Cue.Movement;
-using Cue.Visuals;
+using Cue.Physics;
 using Medicine;
 using UnityEngine;
 
@@ -8,24 +9,13 @@ namespace Cue.Inputs
 {
     public abstract class CueInputController : MonoBehaviour
     {
-        [Inject] protected CueCrosshair Crosshair { get; }
-        [Inject] protected CueDragHandler DragHandler { get; }
-        [Inject] protected CueMovementHandler MovementHandler { get; }
-        [Inject.FromChildren] protected CueVisuals CueVisuals { get; }
+        [Inject.Single] protected WhiteBall CueBall { get; }
 
-        protected void Awake()
-        {
-            SetInteractable(true);
-        }
+        protected CueDragHandler DragHandler;
+        protected CuePhysics Physics;
+        protected IMovementHandler MovementHandler;
 
-        protected void SetInteractable(bool interactable)
-        {
-            Crosshair.enabled = interactable;
-            DragHandler.enabled = interactable;
-            MovementHandler.enabled = interactable;
-            CueVisuals.enabled = interactable;
-        }
-
+        protected abstract void Awake();
         protected abstract void Update();
     }
 }

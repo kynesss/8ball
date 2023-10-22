@@ -1,4 +1,6 @@
-﻿using Common;
+﻿using Balls;
+using Common;
+using Medicine;
 using UnityEngine;
 
 namespace Cue.Dragging
@@ -9,23 +11,38 @@ namespace Cue.Dragging
         [SerializeField] private float minDrag;
         [SerializeField] private float maxDrag;
         [SerializeField] private float dragSpeed;
+
+        [Inject.Single] private MouseController Mouse { get; }
+        [Inject.Single] private WhiteBall WhiteBall { get; }
         
         private Vector2 _currentDragPosition;
         public float DragStrength { get; private set; }
+        
+        public bool IsDragging { get; private set; }
+        
+        public Vector2 AimDirection { get; private set; }
 
         private void OnEnable()
         {
+            ResetDrag();
+        }
+
+        private void ResetDrag()
+        {
+            IsDragging = false;
             DragStrength = minDrag;
         }
         
         public void BeginDrag()
         {
-            _currentDragPosition = MouseController.GetWorldPosition();
+            _currentDragPosition = Mouse.GetWorldPosition();
+            IsDragging = true;
+            AimDirection = (transform.right - WhiteBall.transform.position).normalized;
         }
 
         public void Drag()
         {
-            var mousePosition = MouseController.GetWorldPosition();
+            var mousePosition = Mouse.GetWorldPosition();
             var dragDirection = (mousePosition - _currentDragPosition).normalized;
             var dragScalar = Vector2.Dot(dragDirection, transform.right);
             var drag = DragStrength - dragScalar * dragSpeed * Time.deltaTime;
@@ -38,6 +55,8 @@ namespace Cue.Dragging
         {
             if (DragStrength <= minDrag)
                 DragStrength = minDrag;
+            
+            ResetDrag();
         }
     }
 }

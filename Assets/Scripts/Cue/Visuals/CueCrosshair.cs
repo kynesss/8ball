@@ -1,3 +1,5 @@
+using Balls;
+using Medicine;
 using UnityEngine;
 
 namespace Cue.Visuals
@@ -15,14 +17,12 @@ namespace Cue.Visuals
         [SerializeField] private float minOffsetToStraightLine;
         [SerializeField] private LayerMask layerMask;
 
-        [Header("References")] 
-        [SerializeField] private CircleCollider2D cueBall;
-
         [Header("Circle render")]
         [SerializeField] private int edgesCount;
+        [Inject.Single] private WhiteBall WhiteBall { get; }
 
         private Vector3 _ballCenter;
-        private float CircleRadius => cueBall.radius * cueBall.transform.lossyScale.x;
+        private float CircleRadius => WhiteBall.CircleCollider.radius * WhiteBall.transform.lossyScale.x;
         
         private void Awake()
         {
@@ -67,7 +67,7 @@ namespace Cue.Visuals
             cueBallRenderer.SetPosition(1, circleCenter);
             
             DrawCircleRenderer(circleCenter);
-            DrawCueBallReflection(hit, collisionPoint, collisionNormal);
+            DrawWhiteBallReflection(hit, collisionPoint, collisionNormal);
         }
 
         private void DrawTouchedBallRenderer(RaycastHit2D hit, Vector3 collisionPoint, Vector3 collisionNormal)
@@ -92,7 +92,7 @@ namespace Cue.Visuals
             touchedBallRenderer.SetPosition(1, touchedBallPosition + touchedBallReflection);
         }
 
-        private void DrawCueBallReflection(RaycastHit2D hit, Vector3 collisionPoint, Vector3 collisionNormal)
+        private void DrawWhiteBallReflection(RaycastHit2D hit, Vector3 collisionPoint, Vector3 collisionNormal)
         {
             if (!IsStandardBall(hit.collider))
                 return;
@@ -143,7 +143,7 @@ namespace Cue.Visuals
 
         private void SetupInitialValues()
         {
-            _ballCenter = cueBall.transform.position;
+            _ballCenter = WhiteBall.transform.position;
             cueBallRenderer.enabled = true;
             circleRenderer.enabled = true;
             touchedBallRenderer.enabled = false;
