@@ -2,6 +2,8 @@
 using Cue.Dragging;
 using Medicine;
 using UnityEngine;
+using System;
+using Common;
 
 namespace Cue.Physics
 {
@@ -11,11 +13,15 @@ namespace Cue.Physics
 
         [Inject] private CueDragHandler DragHandler { get; }
         [Inject.Single] private WhiteBall WhiteBall { get; }
-        
+        [Inject.Single] private MouseController Mouse { get; }
+        public event Action OnHit;
+
         public void Hit()
         {
             var force = DragHandler.AimDirection * (DragHandler.DragStrength * strengthMultiplier);
             WhiteBall.Rb.AddForce(force, ForceMode2D.Impulse);
+            
+            OnHit?.Invoke();
         }
     }
 }

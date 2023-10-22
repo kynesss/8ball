@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Balls
-{
+{ 
     [Register.Single]
     public class WhiteBall : Ball
     {

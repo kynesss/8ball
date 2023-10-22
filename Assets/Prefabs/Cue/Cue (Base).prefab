@@ -338,6 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5020048841184903263}
   - component: {fileID: 5020048840079435713}
+  - component: {fileID: 500357256023044902}
   - component: {fileID: 5020048841184903243}
   - component: {fileID: 5020048841184903262}
   - component: {fileID: 5020048841184903240}
@@ -464,6 +465,18 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &500357256023044902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5020048840926430006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05638ee704640f98460a35da37a7020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5020048841184903243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -499,7 +512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDrag: 0.25
   maxDrag: 5
-  dragSpeed: 25
+  dragSpeed: 10
 --- !u!114 &5020048841184903240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,4 +525,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba35fba8c5e04b08ae1451f827e1f40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthMultiplier: 100
+  strengthMultiplier: 20

@@ -16,11 +16,10 @@ namespace Cue.Dragging
         [Inject.Single] private WhiteBall WhiteBall { get; }
         
         private Vector2 _currentDragPosition;
-        public float DragStrength { get; private set; }
-        
-        public bool IsDragging { get; private set; }
         
         public Vector2 AimDirection { get; private set; }
+        public float DragStrength { get; private set; }
+        public bool IsDragging { get; private set; }
 
         private void OnEnable()
         {
@@ -37,7 +36,7 @@ namespace Cue.Dragging
         {
             _currentDragPosition = Mouse.GetWorldPosition();
             IsDragging = true;
-            AimDirection = (transform.right - WhiteBall.transform.position).normalized;
+            AimDirection = (_currentDragPosition - WhiteBall.Rb.position).normalized;
         }
 
         public void Drag()

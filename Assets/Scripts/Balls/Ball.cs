@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using Medicine;
 using UnityEngine;
 
 namespace Balls
@@ -8,7 +9,7 @@ namespace Balls
         private const float VelocityThreshold = 0.1f;
         private const float RotationAngle = 60f;
         [field: SerializeField] public int Number { get; private set; }
-        [field: SerializeField] public Rigidbody2D Rb { get; private set; }
+        [Inject] public Rigidbody2D Rb { get; private set; }
         
         private BallSpriteController _spriteController;
         private Vector3 _startPosition;

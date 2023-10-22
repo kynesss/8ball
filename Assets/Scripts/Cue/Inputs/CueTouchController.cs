@@ -1,20 +1,10 @@
 ﻿using System;
-using Cue.Dragging;
-using Cue.Movement;
-using Cue.Physics;
 using UnityEngine;
 
 namespace Cue.Inputs
 {
     public class CueTouchController : CueInputController
     {
-        protected override void Awake()
-        {
-            MovementHandler = GetComponent<CueTouchMovement>();
-            DragHandler = GetComponent<CueDragHandler>();
-            Physics = GetComponent<CuePhysics>();
-        }
-
         protected override void Update()
         {
             if (Input.touchCount < 1)

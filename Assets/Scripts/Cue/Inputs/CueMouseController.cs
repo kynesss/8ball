@@ -1,19 +1,9 @@
-﻿using Cue.Dragging;
-using Cue.Movement;
-using Cue.Physics;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Cue.Inputs
 {
     public class CueMouseController : CueInputController
     {
-        protected override void Awake()
-        {
-            MovementHandler = GetComponent<CueMouseMovement>();
-            DragHandler = GetComponent<CueDragHandler>();
-            Physics = GetComponent<CuePhysics>();
-        }
-
         protected override void Update()
         {
             if (Input.GetMouseButtonDown(0))
@@ -24,8 +14,8 @@ namespace Cue.Inputs
 
             if (Input.GetMouseButtonUp(0))
             {
-                DragHandler.EndDrag();
                 Physics.Hit();
+                DragHandler.EndDrag();
             }
 
             MovementHandler.HandleMovement(CueBall.transform.position);

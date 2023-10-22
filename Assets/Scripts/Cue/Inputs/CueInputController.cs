@@ -11,11 +11,10 @@ namespace Cue.Inputs
     {
         [Inject.Single] protected WhiteBall CueBall { get; }
 
-        protected CueDragHandler DragHandler;
-        protected CuePhysics Physics;
-        protected IMovementHandler MovementHandler;
-
-        protected abstract void Awake();
+        [Inject] protected CueDragHandler DragHandler { get; }
+        [Inject] protected CuePhysics Physics { get; }
+        [Inject] protected IMovementHandler MovementHandler { get; }
+        
         protected abstract void Update();
     }
 }
