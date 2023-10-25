@@ -55,26 +55,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5020048841184903262, guid: 6dd05d7b343980d458318996ec7ee14d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6dd05d7b343980d458318996ec7ee14d, type: 3}
 --- !u!1 &5503776830878596236 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5020048840926430006, guid: 6dd05d7b343980d458318996ec7ee14d, type: 3}
   m_PrefabInstance: {fileID: 705829345205370810}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1780158204028065733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5503776830878596236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65bebb35de7448d29afea82686205017, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cueBall: {fileID: 0}
 --- !u!114 &-8108799603976494980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,3 +75,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751402dfd071441185921a80487e958f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1780158204028065733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503776830878596236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65bebb35de7448d29afea82686205017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1391871375553174599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5503776830878596236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f299c621281439ba5a785eba97b2c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDrag: 0.25
+  maxDrag: 5
+  dragSpeed: 10

@@ -8,15 +8,18 @@ using UnityEngine;
 
 namespace Cue.Core
 {
+    [Register.Single]
     public class CueController : MonoBehaviour
     {
-        [Inject] private IMovementHandler MovementHandler { get; }
-        [Inject] private CueDragHandler DragHandler { get; }
-        [Inject] private CueCrosshair Crosshair { get; }
-        [Inject] private CuePhysics Physics { get; }
-        [Inject.FromChildren] private CueVisuals CueVisuals { get; }
         [Inject.Single] private BallController BallController { get; }
         
+        [Inject] private IMovementHandler MovementHandler { get; }
+        [Inject] public IDragHandler DragHandler { get; }
+        [Inject] private CueCrosshair Crosshair { get; }
+        [Inject] public CuePhysics Physics { get; }
+        [Inject.FromChildren] private MonoBehaviour[] Handlers { get; }
+        [Inject.FromChildren] private CueVisuals CueVisuals { get; }
+
         private void OnEnable()
         {
             Physics.OnHit += Disable;
@@ -40,20 +43,23 @@ namespace Cue.Core
 
         private void Enable()
         {
-            SetInteractable(true);
+            SetHandlersEnabled(true);
         }
 
         private void Disable()
         {
-            SetInteractable(false);
+            SetHandlersEnabled(false);
         }
 
-        private void SetInteractable(bool interactable)
+        private void SetHandlersEnabled(bool enable)
         {
-            Crosshair.enabled = interactable;
-            DragHandler.enabled = interactable;
-            CueVisuals.enabled = interactable;
-            Physics.enabled = interactable;
+            foreach (var handler in Handlers)
+            {
+                if (handler == this)
+                    continue;
+                
+                handler.enabled = enable;
+            }
         }
     }
 }

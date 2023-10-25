@@ -16,7 +16,6 @@ namespace Cue.Inputs
             {
                 case TouchPhase.Began:
                 {
-                    //Debug.Log($"Began");
                     break;
                 }
                 case TouchPhase.Moved:
@@ -26,12 +25,10 @@ namespace Cue.Inputs
                 }
                 case TouchPhase.Stationary:
                 {
-                    //Debug.Log($"Stationary");
                     break;
                 }
                 case TouchPhase.Ended:
                 {
-                    //Debug.Log($"Ended");
                     break;
                 }
                 default:

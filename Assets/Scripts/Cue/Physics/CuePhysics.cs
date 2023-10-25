@@ -11,14 +11,14 @@ namespace Cue.Physics
     {
         [SerializeField] private float strengthMultiplier;
 
-        [Inject] private CueDragHandler DragHandler { get; }
+        [Inject] private IDragHandler DragHandler { get; }
         [Inject.Single] private WhiteBall WhiteBall { get; }
         [Inject.Single] private MouseController Mouse { get; }
         public event Action OnHit;
 
         public void Hit()
         {
-            var force = DragHandler.AimDirection * (DragHandler.DragStrength * strengthMultiplier);
+            var force = DragHandler.DragDirection * (DragHandler.DragStrength * strengthMultiplier);
             WhiteBall.Rb.AddForce(force, ForceMode2D.Impulse);
             
             OnHit?.Invoke();

@@ -7,9 +7,9 @@ namespace Cue.Movement
 {
     public class CueMouseMovement : MonoBehaviour, IMovementHandler
     {
-        [Inject] private CueDragHandler DragHandler { get; }
-        [Inject.Single] private MouseController Mouse { get; } 
-        
+        [Inject.Single] private MouseController Mouse { get; }
+        [Inject] private IDragHandler DragHandler { get; }
+
         private float _radians;
         private float _degrees;
         

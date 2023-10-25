@@ -10,7 +10,7 @@ namespace Cue.Inputs
                 DragHandler.BeginDrag();
 
             if (Input.GetMouseButton(0))
-                DragHandler.Drag();
+                DragHandler.Drag(Time.deltaTime);
 
             if (Input.GetMouseButtonUp(0))
             {

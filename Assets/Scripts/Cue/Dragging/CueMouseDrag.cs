@@ -5,57 +5,48 @@ using UnityEngine;
 
 namespace Cue.Dragging
 {
-    public class CueDragHandler : MonoBehaviour
+    public class CueMouseDrag : MonoBehaviour, IDragHandler
     {
         [Header("Drag Settings")] 
-        [SerializeField] private float minDrag;
-        [SerializeField] private float maxDrag;
-        [SerializeField] private float dragSpeed;
-
+        [SerializeField] private float minDrag = 0.25f;
+        [SerializeField] private float maxDrag = 5f;
+        [SerializeField] private float dragSpeed = 10f;
+        
         [Inject.Single] private MouseController Mouse { get; }
         [Inject.Single] private WhiteBall WhiteBall { get; }
-        
+
         private Vector2 _currentDragPosition;
-        
-        public Vector2 AimDirection { get; private set; }
         public float DragStrength { get; private set; }
         public bool IsDragging { get; private set; }
-
+        public Vector2 DragDirection { get; private set; }
+        
         private void OnEnable()
         {
-            ResetDrag();
-        }
-
-        private void ResetDrag()
-        {
-            IsDragging = false;
-            DragStrength = minDrag;
+            EndDrag();
         }
         
         public void BeginDrag()
         {
             _currentDragPosition = Mouse.GetWorldPosition();
             IsDragging = true;
-            AimDirection = (_currentDragPosition - WhiteBall.Rb.position).normalized;
+            DragDirection = (_currentDragPosition - WhiteBall.Rb.position).normalized;
         }
 
-        public void Drag()
+        public void Drag(float value)
         {
             var mousePosition = Mouse.GetWorldPosition();
             var dragDirection = (mousePosition - _currentDragPosition).normalized;
             var dragScalar = Vector2.Dot(dragDirection, transform.right);
-            var drag = DragStrength - dragScalar * dragSpeed * Time.deltaTime;
+            var drag = DragStrength - dragScalar * dragSpeed * value;
 
             DragStrength = Mathf.Clamp(drag, minDrag, maxDrag);
             _currentDragPosition = mousePosition;
         }
-
+        
         public void EndDrag()
         {
-            if (DragStrength <= minDrag)
-                DragStrength = minDrag;
-            
-            ResetDrag();
+            IsDragging = false;
+            DragStrength = minDrag;
         }
     }
 }
