@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace Cue.Movement
+﻿namespace Cue.Movement
 {
     public interface IMovementHandler
     {
-        void HandleMovement(Vector2 center);
+        void HandleMovement();
     }
 }

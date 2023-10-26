@@ -20,7 +20,7 @@ namespace Cue.Inputs
                 }
                 case TouchPhase.Moved:
                 {
-                    MovementHandler.HandleMovement(CueBall.transform.position);
+                    MovementHandler.HandleMovement();
                     break;
                 }
                 case TouchPhase.Stationary:

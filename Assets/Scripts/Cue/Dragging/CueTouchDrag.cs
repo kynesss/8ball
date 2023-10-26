@@ -1,6 +1,4 @@
-﻿using System;
-using Balls;
-using Common;
+﻿using Balls;
 using Medicine;
 using UnityEngine;
 
@@ -13,6 +11,7 @@ namespace Cue.Dragging
         [SerializeField] private float maxDrag = 5f;
         
         [Inject.Single] private WhiteBall WhiteBall { get; }
+        
         public float DragStrength { get; private set; }
         public bool IsDragging { get; private set; }
         public Vector2 DragDirection { get; private set; }

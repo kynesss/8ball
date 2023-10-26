@@ -18,7 +18,7 @@ namespace Cue.Inputs
                 DragHandler.EndDrag();
             }
 
-            MovementHandler.HandleMovement(CueBall.transform.position);
+            MovementHandler.HandleMovement();
         }
     }
 }
