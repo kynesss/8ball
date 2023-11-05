@@ -16,14 +16,7 @@ namespace Cue.UI
         [Inject.Single] private BallController BallController { get; }
         [Inject.FromChildren] private Slider DragSlider { get; }
         [Inject.FromChildren] private EventTrigger EventTrigger { get; }
-
-        private IDragHandler _dragHandler;
         
-        private void Start()
-        {
-            _dragHandler = CueController.DragHandler;
-        }
-
         private void Update()
         {
             DragSlider.enabled = BallController.AllBallsAreStationary;
@@ -32,12 +25,12 @@ namespace Cue.UI
         
         public void BeginDrag()
         {
-            _dragHandler.BeginDrag();
+            CueController.DragHandler.BeginDrag();
         }
 
         public void Drag()
         {
-            _dragHandler.Drag(DragSlider.value);
+            CueController.DragHandler.Drag(DragSlider.value);
         }
 
         public void EndDrag()
@@ -45,7 +38,7 @@ namespace Cue.UI
             if (DragSlider.value > 0f)
                 CueController.Physics.Hit();
             
-            _dragHandler.EndDrag();
+            CueController.DragHandler.EndDrag();
             DragSlider.value = 0f;
         }
     }

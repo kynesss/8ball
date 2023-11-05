@@ -1,35 +1,27 @@
 ﻿using Common;
-using Cue.Inputs;
+using Elympics;
 using Medicine;
 using UnityEngine;
 
 namespace Cue.Core
 {
-    public class CueSpawner : MonoBehaviour
+    public class CueSpawner : ElympicsMonoBehaviour, IUpdatable
     {
-        [Header("Cue prefabs")]
-        [SerializeField] private CueMouseController mouseCue;
-        [SerializeField] private CueTouchController touchCue;
-
         [Inject.Single] private GameManager GameManager { get; }
-        
-        private void Awake()
-        {
-            Spawn();
-        }
 
-        private void Spawn()
+        private bool _spawned;
+        
+        public void ElympicsUpdate()
         {
-            if (Application.isEditor)
-            {
-                Instantiate(GameManager.MobileModeOn ? touchCue : mouseCue);
+            if (_spawned)
                 return;
-            }
-            
-            if (Application.isMobilePlatform)
-                Instantiate(touchCue);
+
+            if (Application.isEditor)
+                ElympicsInstantiate(GameManager.MobileModeOn ? "Cue (Mobile)" : "Cue (Desktop)", ElympicsPlayer.FromIndex(0));
             else
-                Instantiate(mouseCue);
+                ElympicsInstantiate(Application.isMobilePlatform ? "Cue (Mobile)" : "Cue (Desktop)", ElympicsPlayer.FromIndex(0));
+            
+            _spawned = true;
         }
     }
 }
