@@ -1,10 +1,21 @@
-﻿using UnityEngine;
+﻿using Elympics;
+using UnityEngine;
 
 namespace Cue.Inputs
 {
     public class CueMouseController : CueInputController
     {
-        protected override void Update()
+        public override void OnInputForClient(IInputWriter writer)
+        {
+            
+        }
+
+        public override void Update()
+        {
+            
+        }
+
+        public override void ElympicsUpdate()
         {
             if (Input.GetMouseButtonDown(0))
                 DragHandler.BeginDrag();
@@ -18,7 +29,7 @@ namespace Cue.Inputs
                 DragHandler.EndDrag();
             }
 
-            MovementHandler.HandleMovement();
+            //MovementHandler.HandleMovement();
         }
     }
 }

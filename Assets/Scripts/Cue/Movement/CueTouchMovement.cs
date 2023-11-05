@@ -1,8 +1,8 @@
 ﻿using Balls;
 using Common;
 using Cue.Dragging;
+using Elympics;
 using Medicine;
-using NaughtyAttributes;
 using UnityEngine;
 
 namespace Cue.Movement
@@ -14,26 +14,30 @@ namespace Cue.Movement
         [Inject.Single] private WhiteBall WhiteBall { get; }
         [Inject] private IDragHandler DragHandler { get; }
 
-        [ShowNonSerializedField] private float _degrees;
-        [ShowNonSerializedField] private float _radians;
+        private readonly ElympicsFloat _degrees = new();
+        private readonly ElympicsFloat _radians = new();
+
+        private Vector2 _lastDeltaPosition;
+        
         private Vector2 Center => WhiteBall.transform.position;
         
         private void OnEnable()
         {
             SetPositionAndRotation(xOffset);
         }
-
-        public void HandleMovement()
+        
+        public void HandleMovement(Vector2 position, float deltaTime)
         {
-            var touch = Input.GetTouch(0);
-            var deltaTime = touch.deltaTime;
-            var magnitude = touch.deltaPosition.magnitude;
-            var directionMultiplier = CalculateDirectionMultiplier(touch.GetDirection());
+            if (position == _lastDeltaPosition)
+                return;
+             
+            var magnitude = position.magnitude;
+            var directionMultiplier = CalculateDirectionMultiplier(position.GetDirection());
 
             if (!DragHandler.IsDragging)
             {
-                _degrees = Mathf.Lerp(_degrees, _degrees + (directionMultiplier * magnitude),  speedMultiplier * deltaTime);
-                _radians = _degrees * Mathf.Deg2Rad;
+                _degrees.Value = Mathf.Lerp(_degrees, _degrees + (directionMultiplier * magnitude),  speedMultiplier * deltaTime);
+                _radians.Value = _degrees * Mathf.Deg2Rad;
             }
 
             var radius = Mathf.Max(DragHandler.DragStrength, xOffset);

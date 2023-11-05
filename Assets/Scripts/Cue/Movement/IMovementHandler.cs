@@ -1,7 +1,9 @@
-﻿namespace Cue.Movement
+﻿using UnityEngine;
+
+namespace Cue.Movement
 {
     public interface IMovementHandler
     {
-        void HandleMovement();
+        void HandleMovement(Vector2 position, float deltaTime);
     }
 }

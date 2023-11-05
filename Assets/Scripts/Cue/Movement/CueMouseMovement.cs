@@ -18,7 +18,7 @@ namespace Cue.Movement
 
         private Vector2 Center => WhiteBall.transform.position;
         
-        public void HandleMovement()
+        public void HandleMovement(Vector2 position, float deltaTime)
         {
             if (!DragHandler.IsDragging)
             {
