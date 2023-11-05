@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Cue.Inputs
 {
@@ -11,29 +10,10 @@ namespace Cue.Inputs
                 return;
 
             var touchPhase = Input.GetTouch(0).phase;
-
-            switch (touchPhase)
-            {
-                case TouchPhase.Began:
-                {
-                    break;
-                }
-                case TouchPhase.Moved:
-                {
-                    MovementHandler.HandleMovement();
-                    break;
-                }
-                case TouchPhase.Stationary:
-                {
-                    break;
-                }
-                case TouchPhase.Ended:
-                {
-                    break;
-                }
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            if (touchPhase != TouchPhase.Moved)
+                return;
+            
+            MovementHandler.HandleMovement();
         }
     }
 }
