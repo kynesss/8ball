@@ -1,11 +1,11 @@
 {
   "dependencies": {
-    "com.cysharp.unitask": {
-      "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
+    "com.daftmobile.elympics": {
+      "version": "https://github.com/Elympics/Unity-SDK.git",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "cfe509a55602ba5be6df7fa0468b10298b8a053d"
+      "hash": "f47b372ce122860bb36f0493d9b90f225c38dd14"
     },
     "com.unity.2d.animation": {
       "version": "7.0.10",
