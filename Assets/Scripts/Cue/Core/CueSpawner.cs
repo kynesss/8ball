@@ -27,13 +27,9 @@ namespace Cue.Core
             }
             
             if (Application.isMobilePlatform)
-            {
                 Instantiate(touchCue);
-            }
             else
-            {
                 Instantiate(mouseCue);
-            }
         }
     }
 }
