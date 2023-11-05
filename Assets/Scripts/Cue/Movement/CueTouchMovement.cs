@@ -20,7 +20,7 @@ namespace Cue.Movement
         
         private void OnEnable()
         {
-            ResetMovement();
+            SetPositionAndRotation(xOffset);
         }
 
         public void HandleMovement()
@@ -36,16 +36,16 @@ namespace Cue.Movement
                 _radians = _degrees * Mathf.Deg2Rad;
             }
 
-            var horizontal = Center.x - Mathf.Cos(_radians) * DragHandler.DragStrength;
-            var vertical = Center.y - Mathf.Sin(_radians) * DragHandler.DragStrength;
-
-            transform.position = new Vector2(horizontal, vertical);
-            transform.rotation = Quaternion.Euler(0f, 0f, _degrees);
+            var radius = Mathf.Max(DragHandler.DragStrength, xOffset);
+            SetPositionAndRotation(radius);
         }
         
-        private void ResetMovement()
+        private void SetPositionAndRotation(float radius)
         {
-            transform.position = new Vector3(Center.x - xOffset, Center.y);
+            var horizontal = Center.x - Mathf.Cos(_radians) * radius;
+            var vertical = Center.y - Mathf.Sin(_radians) * radius;
+
+            transform.position = new Vector2(horizontal, vertical);
             transform.rotation = Quaternion.Euler(0f, 0f, _degrees);
         }
 
