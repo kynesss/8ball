@@ -1,4 +1,6 @@
-﻿using Cue.Inputs;
+﻿using Common;
+using Cue.Inputs;
+using Medicine;
 using UnityEngine;
 
 namespace Cue.Core
@@ -9,8 +11,7 @@ namespace Cue.Core
         [SerializeField] private CueMouseController mouseCue;
         [SerializeField] private CueTouchController touchCue;
 
-        [Header("Editor settings")] 
-        [SerializeField] private bool touchEnabled;
+        [Inject.Single] private GameManager GameManager { get; }
         
         private void Awake()
         {
@@ -21,7 +22,7 @@ namespace Cue.Core
         {
             if (Application.isEditor)
             {
-                Instantiate(touchEnabled ? touchCue : mouseCue);
+                Instantiate(GameManager.MobileModeOn ? touchCue : mouseCue);
                 return;
             }
             
