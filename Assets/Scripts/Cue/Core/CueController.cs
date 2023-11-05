@@ -44,11 +44,13 @@ namespace Cue.Core
         private void Enable()
         {
             SetHandlersEnabled(true);
+            CueVisuals.enabled = true;
         }
 
         private void Disable()
         {
             SetHandlersEnabled(false);
+            CueVisuals.enabled = false;
         }
 
         private void SetHandlersEnabled(bool enable)
