@@ -8,7 +8,6 @@ namespace Cue.Dragging
     {
         [Header("Drag Settings")] 
         [SerializeField] private float minDrag = 0.25f;
-        [SerializeField] private float maxDrag = 5f;
         
         [Inject.Single] private WhiteBall WhiteBall { get; }
         
@@ -29,7 +28,7 @@ namespace Cue.Dragging
 
         public void Drag(float value)
         {
-            DragStrength = Mathf.Clamp(value, minDrag, maxDrag);
+            DragStrength = value;
         }
 
         public void EndDrag()
