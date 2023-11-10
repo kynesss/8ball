@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minDrag: 0.25
-  maxDrag: 5
 --- !u!114 &1780158204028065733
 MonoBehaviour:
   m_ObjectHideFlags: 0

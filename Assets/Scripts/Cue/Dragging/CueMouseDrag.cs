@@ -1,5 +1,6 @@
 ﻿using Balls;
 using Common;
+using Elympics;
 using Medicine;
 using UnityEngine;
 
@@ -16,8 +17,8 @@ namespace Cue.Dragging
         [Inject.Single] private WhiteBall WhiteBall { get; }
 
         private Vector2 _currentDragPosition;
-        public float DragStrength { get; private set; }
-        public bool IsDragging { get; private set; }
+        public ElympicsFloat DragStrength { get; } = new();
+        public ElympicsBool IsDragging { get; } = new();
         public Vector2 DragDirection { get; private set; }
         
         private void OnEnable()
@@ -28,7 +29,7 @@ namespace Cue.Dragging
         public void BeginDrag()
         {
             _currentDragPosition = Mouse.GetWorldPosition();
-            IsDragging = true;
+            IsDragging.Value = true;
             DragDirection = (_currentDragPosition - WhiteBall.Rb.position).normalized;
         }
 
@@ -39,14 +40,14 @@ namespace Cue.Dragging
             var dragScalar = Vector2.Dot(dragDirection, transform.right);
             var drag = DragStrength - dragScalar * dragSpeed * value;
 
-            DragStrength = Mathf.Clamp(drag, minDrag, maxDrag);
+            DragStrength.Value = Mathf.Clamp(drag, minDrag, maxDrag);
             _currentDragPosition = mousePosition;
         }
         
         public void EndDrag()
         {
-            IsDragging = false;
-            DragStrength = minDrag;
+            IsDragging.Value = false;
+            DragStrength.Value = minDrag;
         }
     }
 }

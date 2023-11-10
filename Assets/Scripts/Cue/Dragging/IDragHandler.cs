@@ -1,11 +1,12 @@
-﻿using UnityEngine;
+﻿using Elympics;
+using UnityEngine;
 
 namespace Cue.Dragging
 {
     public interface IDragHandler
     {
-        float DragStrength { get; }
-        bool IsDragging { get; }
+        ElympicsFloat DragStrength { get; }
+        ElympicsBool IsDragging { get; }
         Vector2 DragDirection { get; }
         void BeginDrag();
         void Drag(float value);

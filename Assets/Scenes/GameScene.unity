@@ -4246,6 +4246,7 @@ GameObject:
   - component: {fileID: 1832733050}
   - component: {fileID: 1832733052}
   - component: {fileID: 1832733051}
+  - component: {fileID: 1832733053}
   m_Layer: 0
   m_Name: CueDragSliderUI
   m_TagString: Untagged
@@ -4324,6 +4325,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832733047}
   m_CullTransparentMesh: 1
+--- !u!114 &1832733053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832733047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334c2a3facb248ac8c1a599797c52dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forceNetworkId: 0
+  networkId: 19
+  predictableFor:
+    playerIndex: 0
+  isUpdatableForNonOwners: 0
+  visibleFor:
+    playerIndex: -3
+  stateFrequencyStages:
+  - stageDurationInMiliseconds: 500
+    frequencyInMiliseconds: 30
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 200
+    maxStageDurationInMiliseconds: 5000
+  - stageDurationInMiliseconds: 1000
+    frequencyInMiliseconds: 1000
+    maxStageDurationInMiliseconds: 5000
 --- !u!114 &1838651555 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7050846144298593087, guid: d85a7dae97eb3274f85de7f2f273822d, type: 3}

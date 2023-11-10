@@ -16,8 +16,6 @@ namespace Cue.Movement
 
         private readonly ElympicsFloat _degrees = new();
         private readonly ElympicsFloat _radians = new();
-
-        private Vector2 _lastDeltaPosition;
         
         private Vector2 Center => WhiteBall.transform.position;
         
@@ -28,29 +26,26 @@ namespace Cue.Movement
         
         public void HandleMovement(Vector2 position, float deltaTime)
         {
-            if (position == _lastDeltaPosition)
-                return;
-             
             var magnitude = position.magnitude;
             var directionMultiplier = CalculateDirectionMultiplier(position.GetDirection());
 
-            if (!DragHandler.IsDragging)
+            if (!DragHandler.IsDragging.Value)
             {
-                _degrees.Value = Mathf.Lerp(_degrees, _degrees + (directionMultiplier * magnitude),  speedMultiplier * deltaTime);
-                _radians.Value = _degrees * Mathf.Deg2Rad;
+                _degrees.Value = Mathf.Lerp(_degrees.Value, _degrees.Value + (directionMultiplier * magnitude),  speedMultiplier * deltaTime);
+                _radians.Value = _degrees.Value * Mathf.Deg2Rad;
             }
-
-            var radius = Mathf.Max(DragHandler.DragStrength, xOffset);
+            
+            var radius = Mathf.Max(DragHandler.DragStrength.Value, xOffset);
             SetPositionAndRotation(radius);
         }
         
         private void SetPositionAndRotation(float radius)
         {
-            var horizontal = Center.x - Mathf.Cos(_radians) * radius;
-            var vertical = Center.y - Mathf.Sin(_radians) * radius;
+            var horizontal = Center.x - Mathf.Cos(_radians.Value) * radius;
+            var vertical = Center.y - Mathf.Sin(_radians.Value) * radius;
 
             transform.position = new Vector2(horizontal, vertical);
-            transform.rotation = Quaternion.Euler(0f, 0f, _degrees);
+            transform.rotation = Quaternion.Euler(0f, 0f, _degrees.Value);
         }
 
         private static float CalculateDirectionMultiplier(Vector2 direction)

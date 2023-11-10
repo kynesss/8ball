@@ -7,6 +7,7 @@ namespace Cue.Inputs
     {
         private int _touchCount;
         private Vector2 _touchDeltaPosition;
+        private bool _dragging;
 
         public override void OnInputForClient(IInputWriter writer)
         {
@@ -43,7 +44,7 @@ namespace Cue.Inputs
 
             if (touchCount < 1)
                 return;
-            
+
             MovementHandler.HandleMovement(new Vector2(horizontal, vertical), Elympics.TickDuration);
         }
     }
