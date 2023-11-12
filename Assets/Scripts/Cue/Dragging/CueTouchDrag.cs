@@ -1,4 +1,5 @@
 ﻿using Balls;
+using Cue.UI;
 using Elympics;
 using Medicine;
 using UnityEngine;
@@ -11,7 +12,6 @@ namespace Cue.Dragging
         [SerializeField] private float minDrag = 0.25f;
         
         [Inject.Single] private WhiteBall WhiteBall { get; }
-
         public ElympicsFloat DragStrength { get; } = new();
         public ElympicsBool IsDragging { get; } = new();
         public Vector2 DragDirection { get; private set; }
@@ -20,6 +20,31 @@ namespace Cue.Dragging
         {
             EndDrag();
         }
+
+        private void OnBeginDrag(bool lastValue, bool newValue)
+        {
+            if (!newValue)
+                return;
+            
+            BeginDrag();
+        }
+
+        private void OnDrag(bool lastValue, bool newValue)
+        {
+            if (!newValue)
+                return;
+            
+            //Drag();
+        }
+
+        private void OnEndDrag(bool lastValue, bool newValue)
+        {
+            if (!newValue)
+                return;
+            
+            EndDrag();
+        }
+
         public void BeginDrag()
         {
             IsDragging.Value = true;

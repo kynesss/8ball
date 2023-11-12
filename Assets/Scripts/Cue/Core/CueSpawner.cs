@@ -1,6 +1,7 @@
 ﻿using Common;
 using Elympics;
 using Medicine;
+using Players;
 using UnityEngine;
 
 namespace Cue.Core
@@ -9,19 +10,50 @@ namespace Cue.Core
     {
         [Inject.Single] private GameManager GameManager { get; }
 
-        private bool _spawned;
-        
+        private int _playerId = -1;
+        private bool CanSpawn => _playerId != -1;
+
+        private void Awake()
+        {
+            PlayerManager.PlayerConnected += OnPlayerConnected;
+        }
+
+        private void OnDestroy()
+        {
+            PlayerManager.PlayerConnected -= OnPlayerConnected;
+        }
+
         public void ElympicsUpdate()
         {
-            if (_spawned)
+            if (!Elympics.IsServer)
                 return;
 
+            if (!CanSpawn)
+                return;
+
+            SpawnCue();
+        }
+
+        private void OnPlayerConnected(int newValue)
+        {
+            Debug.Log($"Player connected: {newValue}");
+            _playerId = newValue;
+        }
+
+        private void SpawnCue()
+        {
             if (Application.isEditor)
-                ElympicsInstantiate(GameManager.MobileModeOn ? "Cue (Mobile)" : "Cue (Desktop)", ElympicsPlayer.FromIndex(0));
+            {
+                ElympicsInstantiate(GameManager.MobileModeOn ? "Cue (Mobile)" : "Cue (Desktop)",
+                    ElympicsPlayer.FromIndex(_playerId));
+            }
             else
-                ElympicsInstantiate(Application.isMobilePlatform ? "Cue (Mobile)" : "Cue (Desktop)", ElympicsPlayer.FromIndex(0));
+            {
+                ElympicsInstantiate(Application.isMobilePlatform ? "Cue (Mobile)" : "Cue (Desktop)",
+                    ElympicsPlayer.FromIndex(_playerId));
+            }
             
-            _spawned = true;
+            _playerId = -1;
         }
     }
 }

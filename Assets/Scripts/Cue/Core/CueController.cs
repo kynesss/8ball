@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace Cue.Core
 {
-    [Register.Single]
     public class CueController : MonoBehaviour
     {
         [Inject.Single] private BallController BallController { get; }
