@@ -1,17 +1,20 @@
 ﻿using Balls;
+using Common;
 using Cue.Dragging;
 using Cue.Movement;
 using Cue.Physics;
 using Cue.Visuals;
+using Elympics;
 using Medicine;
+using Players;
 using UnityEngine;
 
 namespace Cue.Core
 {
-    public class CueController : MonoBehaviour
+    public class CueController : ElympicsMonoBehaviour
     {
         [Inject.Single] private BallController BallController { get; }
-        
+
         [Inject] private IMovementHandler MovementHandler { get; }
         [Inject] public IDragHandler DragHandler { get; }
         [Inject] private CueCrosshair Crosshair { get; }
@@ -19,37 +22,26 @@ namespace Cue.Core
         [Inject.FromChildren] private MonoBehaviour[] Handlers { get; }
         [Inject.FromChildren] private CueVisuals CueVisuals { get; }
 
+        private bool IsCurrentPlayer => (int)PredictableFor == PlayerManager.CurrentPlayerId;
+
         private void OnEnable()
         {
-            Physics.OnHit += Disable;
+            GameManager.TurnChanged += GameManager_OnTurnChanged;
         }
 
         private void OnDisable()
         {
-            Physics.OnHit -= Disable;
+            GameManager.TurnChanged -= GameManager_OnTurnChanged;
         }
 
         private void Start()
         {
-            Enable();
+            SetHandlersEnabled(IsCurrentPlayer);
         }
-
-        private void Update()
+        
+        private void GameManager_OnTurnChanged()
         {
-            if (BallController.AllBallsAreStationary)
-                Enable();
-        }
-
-        private void Enable()
-        {
-            SetHandlersEnabled(true);
-            CueVisuals.enabled = true;
-        }
-
-        private void Disable()
-        {
-            SetHandlersEnabled(false);
-            CueVisuals.enabled = false;
+            SetHandlersEnabled(IsCurrentPlayer);
         }
 
         private void SetHandlersEnabled(bool enable)
@@ -58,9 +50,11 @@ namespace Cue.Core
             {
                 if (handler == this)
                     continue;
-                
+
                 handler.enabled = enable;
             }
+
+            CueVisuals.enabled = enable;
         }
     }
 }

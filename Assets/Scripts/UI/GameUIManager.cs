@@ -13,13 +13,9 @@ namespace UI
         private void Awake()
         {
             if (!Application.isMobilePlatform && !GameManager.MobileModeOn)
-            {
                 CueDragSlider.gameObject.SetActive(false);
-            }
             else
-            {
                 CueDragSlider.gameObject.SetActive(true);
-            }
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Players
             set => _powerInput = value;
         }
 
-        public ElympicsBool Connected { get; set; } = new();
+        public ElympicsBool Connected { get; } = new();
 
         public void OnInputForClient(IInputWriter writer)
         {
