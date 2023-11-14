@@ -1,6 +1,5 @@
 ﻿using Balls;
 using Common;
-using Cue.Dragging;
 using Cue.Movement;
 using Cue.Physics;
 using Cue.Visuals;
@@ -16,7 +15,6 @@ namespace Cue.Core
         [Inject.Single] private BallController BallController { get; }
 
         [Inject] private IMovementHandler MovementHandler { get; }
-        [Inject] public IDragHandler DragHandler { get; }
         [Inject] private CueCrosshair Crosshair { get; }
         [Inject] public CuePhysics Physics { get; }
         [Inject.FromChildren] private MonoBehaviour[] Handlers { get; }

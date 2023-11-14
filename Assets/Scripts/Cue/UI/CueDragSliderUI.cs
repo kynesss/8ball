@@ -8,11 +8,12 @@ using UnityEngine.UI;
 namespace Cue.UI
 {
     public class CueDragSliderUI : MonoBehaviour
-    {
-        [Inject.Single] private WhiteBall WhiteBall { get; }
+    { 
         [Inject.Single] private BallController BallController { get; }
         [Inject.FromChildren] private Slider DragSlider { get; }
-        
+
+        private bool _test;
+
         private void OnEnable()
         {
             DragSlider.onValueChanged.AddListener(DragSlider_ValueChanged);
@@ -47,7 +48,23 @@ namespace Cue.UI
         private void DragSlider_ValueChanged(float value)
         {
             if (GameManager.IsMyTurn)
-                PlayerManager.LocalPlayerBehaviour.Power = value;
+                PlayerManager.LocalPlayer.Power = value;
+        }
+
+        public void PointerDown()
+        {
+            if (GameManager.IsMyTurn)
+                PlayerManager.LocalPlayer.IsDragging = true;
+        }
+
+        public void PointerUp()
+        { 
+            if (!GameManager.IsMyTurn) 
+                return;
+            
+            DragSlider.value = 0f;
+            PlayerManager.LocalPlayer.IsDragging = false;
+            PlayerManager.LocalPlayer.Power = 0f;
         }
     }
 }

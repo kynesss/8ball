@@ -17,7 +17,7 @@ namespace Cue.Inputs
 
         public override void ElympicsUpdate()
         {
-            if (Input.GetMouseButtonDown(0))
+            /*if (Input.GetMouseButtonDown(0))
                 DragHandler.BeginDrag();
 
             if (Input.GetMouseButton(0))
@@ -27,7 +27,7 @@ namespace Cue.Inputs
             {
                 Physics.Hit();
                 DragHandler.EndDrag();
-            }
+            }*/
 
             //MovementHandler.HandleMovement();
         }

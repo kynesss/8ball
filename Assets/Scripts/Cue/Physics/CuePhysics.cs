@@ -1,27 +1,21 @@
 ﻿using Balls;
-using Cue.Dragging;
 using Medicine;
 using UnityEngine;
-using System;
 using Common;
+using Players;
 
 namespace Cue.Physics
 {
     public class CuePhysics : MonoBehaviour
     {
         [SerializeField] private float strengthMultiplier;
-
-        [Inject] private IDragHandler DragHandler { get; }
         [Inject.Single] private WhiteBall WhiteBall { get; }
         [Inject.Single] private MouseController Mouse { get; }
-        public event Action OnHit;
-
+        private PlayerBehaviour CurrentPlayer => PlayerManager.GetCurrentPlayer();
         public void Hit()
         {
-            var force = DragHandler.DragDirection * (DragHandler.DragStrength * strengthMultiplier);
+            var force = transform.right * (CurrentPlayer.Power * strengthMultiplier);
             WhiteBall.Rb.AddForce(force, ForceMode2D.Impulse);
-            
-            OnHit?.Invoke();
         }
     }
 }

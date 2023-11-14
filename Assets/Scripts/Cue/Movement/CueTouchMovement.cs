@@ -1,8 +1,8 @@
 ﻿using Balls;
 using Common.Utils;
-using Cue.Dragging;
 using Elympics;
 using Medicine;
+using Players;
 using UnityEngine;
 
 namespace Cue.Movement
@@ -12,12 +12,11 @@ namespace Cue.Movement
         [SerializeField] private float xOffset;
         [SerializeField] private float speedMultiplier;
         [Inject.Single] private WhiteBall WhiteBall { get; }
-        [Inject] private IDragHandler DragHandler { get; }
 
         private readonly ElympicsFloat _degrees = new();
         private readonly ElympicsFloat _radians = new();
-        
         private Vector2 Center => WhiteBall.transform.position;
+        private PlayerBehaviour CurrentPlayer => PlayerManager.GetCurrentPlayer();
         
         private void OnEnable()
         {
@@ -29,13 +28,13 @@ namespace Cue.Movement
             var magnitude = position.magnitude;
             var directionMultiplier = CalculateDirectionMultiplier(position.GetDirection());
 
-            if (!DragHandler.IsDragging.Value)
+            if (!CurrentPlayer.IsDragging)
             {
                 _degrees.Value = Mathf.Lerp(_degrees.Value, _degrees.Value + (directionMultiplier * magnitude),  speedMultiplier * deltaTime);
                 _radians.Value = _degrees.Value * Mathf.Deg2Rad;
             }
             
-            var radius = Mathf.Max(DragHandler.DragStrength.Value, xOffset);
+            var radius = Mathf.Max(CurrentPlayer.Power, xOffset);
             SetPositionAndRotation(radius);
         }
         

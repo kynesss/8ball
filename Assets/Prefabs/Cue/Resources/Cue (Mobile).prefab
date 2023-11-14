@@ -77,19 +77,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 0.25
   speedMultiplier: 0.5
---- !u!114 &1391871375553174599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5503776830878596236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f299c621281439ba5a785eba97b2c5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDrag: 0.25
 --- !u!114 &1780158204028065733
 MonoBehaviour:
   m_ObjectHideFlags: 0

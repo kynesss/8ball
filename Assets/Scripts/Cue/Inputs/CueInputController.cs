@@ -1,5 +1,4 @@
 ﻿using Balls;
-using Cue.Dragging;
 using Cue.Movement;
 using Cue.Physics;
 using Elympics;
@@ -10,8 +9,6 @@ namespace Cue.Inputs
     public abstract class CueInputController : ElympicsMonoBehaviour, IUpdatable, IInputHandler
     {
         [Inject.Single] protected WhiteBall CueBall { get; }
-
-        [Inject] protected IDragHandler DragHandler { get; }
         [Inject] protected IMovementHandler MovementHandler { get; }
         [Inject] protected CuePhysics Physics { get; }
         
