@@ -14,10 +14,10 @@ namespace Cue.Physics
 
         private void Start()
         {
-            CurrentPlayer.IsDraggingSynchronized.ValueChanged += IsDraggingSynchronizedOnValueChanged;
+            CurrentPlayer.IsDraggingSynchronized.ValueChanged += IsDraggingSynchronized_OnValueChanged;
         }
 
-        private void IsDraggingSynchronizedOnValueChanged(bool lastValue, bool newValue)
+        private void IsDraggingSynchronized_OnValueChanged(bool lastValue, bool newValue)
         {
             if (newValue)
                 return;
@@ -30,7 +30,6 @@ namespace Cue.Physics
         
         private void Hit()
         {
-            Debug.Log($"Power: {CurrentPlayer.Power}");
             var force = transform.right * (CurrentPlayer.Power * strengthMultiplier);
             WhiteBall.Rb.AddForce(force, ForceMode2D.Impulse);
         }

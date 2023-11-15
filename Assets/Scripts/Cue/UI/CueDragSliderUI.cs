@@ -12,8 +12,6 @@ namespace Cue.UI
         [Inject.Single] private BallController BallController { get; }
         [Inject.FromChildren] private Slider DragSlider { get; }
 
-        private bool _test;
-
         private void OnEnable()
         {
             DragSlider.onValueChanged.AddListener(DragSlider_ValueChanged);
@@ -47,11 +45,11 @@ namespace Cue.UI
 
         private void DragSlider_ValueChanged(float value)
         {
-            if (GameManager.IsMyTurn)
-            {
-                if (value > 0f)
-                    PlayerManager.LocalPlayer.Power = value;
-            }
+            if (!GameManager.IsMyTurn) 
+                return;
+            
+            if (value > 0f)
+                PlayerManager.LocalPlayer.Power = value;
         }
 
         public void PointerDown()
