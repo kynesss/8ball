@@ -1,45 +1,26 @@
-using System;
 using Elympics;
-using UnityEngine;
 
 namespace Players
 {
     public class PlayerBehaviour : ElympicsMonoBehaviour, IInputHandler, IUpdatable
     {
-        private readonly ElympicsFloat _synchronizedPower = new();
-        private readonly ElympicsBool _synchronizedDrag = new();
+        private readonly ElympicsFloat _powerSynchronized = new();
+        public readonly ElympicsBool IsDraggingSynchronized = new();
         
         private float _powerInput;
         private bool _dragInput;
-
-        public event Action<bool> DragStateChanged;
-        public event Action<float> PowerValueChanged;
         
         public float Power
         {
-            get => _synchronizedPower.Value;
-            set
-            {
-                _powerInput = value;
-                PowerValueChanged?.Invoke(value);
-            }
+            get => _powerSynchronized.Value;
+            set => _powerInput = value;
         }
-
         public bool IsDragging
         {
-            get => _synchronizedDrag.Value;
-            set
-            {
-                _dragInput = value;
-                DragStateChanged?.Invoke(value);
-            }
+            get => IsDraggingSynchronized.Value;
+            set => _dragInput = value;
         }
-
-        private void Update()
-        {
-            //Debug.Log($"Player {(int)PredictableFor} Dragging: {IsDragging}");
-        }
-
+        
         public void OnInputForClient(IInputWriter writer)
         {
             writer.Write(_powerInput);
@@ -56,8 +37,8 @@ namespace Players
             reader.Read(out float power);
             reader.Read(out bool drag);
             
-            _synchronizedPower.Value = power;
-            _synchronizedDrag.Value = drag;
+            _powerSynchronized.Value = power;
+            IsDraggingSynchronized.Value = drag;
         }
     }
 }

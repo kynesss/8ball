@@ -48,7 +48,10 @@ namespace Cue.UI
         private void DragSlider_ValueChanged(float value)
         {
             if (GameManager.IsMyTurn)
-                PlayerManager.LocalPlayer.Power = value;
+            {
+                if (value > 0f)
+                    PlayerManager.LocalPlayer.Power = value;
+            }
         }
 
         public void PointerDown()
@@ -64,7 +67,6 @@ namespace Cue.UI
             
             DragSlider.value = 0f;
             PlayerManager.LocalPlayer.IsDragging = false;
-            PlayerManager.LocalPlayer.Power = 0f;
         }
     }
 }

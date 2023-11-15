@@ -5,13 +5,12 @@ namespace Cue.Inputs
 {
     public class CueTouchController : CueInputController
     {
-        private Vector2 _touchDeltaPosition;
-        private bool _dragging;
+        private Vector2 _touchDeltaPositionInput;
 
         public override void OnInputForClient(IInputWriter writer)
         {
-            writer.Write(_touchDeltaPosition.x);
-            writer.Write(_touchDeltaPosition.y);
+            writer.Write(_touchDeltaPositionInput.x);
+            writer.Write(_touchDeltaPositionInput.y);
         }
 
         public override void Update()
@@ -21,19 +20,19 @@ namespace Cue.Inputs
 
             if (Input.touchCount < 1)
                 return;
-            
+
             var touch = Input.GetTouch(0);
             if (touch.phase is not (TouchPhase.Moved or TouchPhase.Ended))
                 return;
-            
-            _touchDeltaPosition = touch.deltaPosition;
+
+            _touchDeltaPositionInput = touch.deltaPosition;
         }
 
         public override void ElympicsUpdate()
         {
             if (!ElympicsBehaviour.TryGetInput(PredictableFor, out var reader))
                 return;
-            
+
             reader.Read(out float horizontal);
             reader.Read(out float vertical);
 
