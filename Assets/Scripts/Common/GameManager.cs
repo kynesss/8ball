@@ -1,16 +1,15 @@
 using System;
-using Medicine;
 using Players;
 using UnityEngine;
 
 namespace Common
-{
-    [Register.Single]
-    public class GameManager : MonoBehaviour
+{ 
+    public class GameManager : MonoBehaviourSingleton<GameManager>
     {
-        [field: SerializeField] public bool MobileModeOn { get; private set; }
+        [field: SerializeField] private bool mobileModeOn;
         public static event Action TurnChanged; 
         public static bool IsMyTurn => PlayerManager.CurrentPlayerId == PlayerManager.LocalPlayerId;
+        public static bool IsMobileModeOn => Instance.mobileModeOn;
 
         private void Start()
         {
@@ -28,9 +27,15 @@ namespace Common
             TurnChanged?.Invoke();
         }
         
-        private void SetTurnForPlayer(int playerId)
+        private static void SetTurnForPlayer(int playerId)
         {
             PlayerManager.Instance.CurrentPlayerIdSynchronized.Value = playerId;
+        }
+
+        public static void SetNextTurn()
+        {
+            var nextPlayer = PlayerManager.CurrentPlayerId == 0 ? 1 : 0;
+            SetTurnForPlayer(nextPlayer);
         }
     }
 }

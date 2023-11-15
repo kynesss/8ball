@@ -7,6 +7,15 @@
       "dependencies": {},
       "hash": "f47b372ce122860bb36f0493d9b90f225c38dd14"
     },
+    "com.gamedevtube.utils": {
+      "version": "https://github.com/GameDev-Tube/GDTUtils.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "3.2.1"
+      },
+      "hash": "b6afaf999af72d1bac2b0bbe1e5c5cc4e0b3a429"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.10",
       "depth": 1,
@@ -157,6 +166,13 @@
     "com.unity.nuget.mono-cecil": {
       "version": "1.10.1",
       "depth": 2,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

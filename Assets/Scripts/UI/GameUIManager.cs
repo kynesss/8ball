@@ -7,12 +7,11 @@ namespace UI
 {
     public class GameUIManager : MonoBehaviour
     {
-        [Inject.Single] private GameManager GameManager { get; }
         [Inject.FromChildren] private CueDragSliderUI CueDragSlider { get; }
 
         private void Awake()
         {
-            if (!Application.isMobilePlatform && !GameManager.MobileModeOn)
+            if (!Application.isMobilePlatform && !GameManager.IsMobileModeOn)
                 CueDragSlider.gameObject.SetActive(false);
             else
                 CueDragSlider.gameObject.SetActive(true);

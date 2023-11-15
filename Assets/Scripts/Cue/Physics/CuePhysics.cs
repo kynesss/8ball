@@ -26,6 +26,8 @@ namespace Cue.Physics
 
             if (GameManager.IsMyTurn)
                 PlayerManager.LocalPlayer.Power = 0f;
+            
+            GameManager.SetNextTurn();
         }
         
         private void Hit()
