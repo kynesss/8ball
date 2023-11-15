@@ -14,18 +14,14 @@ namespace Common
         public static event Action TurnChanged; 
         public static bool IsMyTurn => PlayerManager.CurrentPlayerId == PlayerManager.LocalPlayerId;
         public static bool IsMobileModeOn => Instance.mobileModeOn;
-
-        private void Start()
+        
+        protected override void SingletonStarted()
         {
+            base.SingletonStarted();
             PlayerManager.Instance.CurrentPlayerIdSynchronized.ValueChanged += OnTurnChanged;
             SetTurnForPlayer(0);
         }
-
-        private void OnDisable()
-        {
-            PlayerManager.Instance.CurrentPlayerIdSynchronized.ValueChanged -= OnTurnChanged;
-        }
-
+        
         private void OnTurnChanged(int lastId, int newId)
         {
             TurnChanged?.Invoke();
@@ -39,7 +35,7 @@ namespace Common
         public static async UniTask SetNextTurnAsync()
         {
             var nextPlayer = PlayerManager.CurrentPlayerId == 0 ? 1 : 0;
-            await UniTask.WaitUntil(() => Instance.BallController.AllBallsAreStationary);
+            await UniTask.WaitUntil(() => Instance.BallController.AllBallsAreStationary, PlayerLoopTiming.Update, Instance.gameObject.GetCancellationTokenOnDestroy());
             SetTurnForPlayer(nextPlayer);
         }
     }

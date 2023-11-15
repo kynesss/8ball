@@ -1,5 +1,4 @@
 ﻿using Elympics;
-using UnityEngine;
 
 namespace Cue.Inputs
 {
