@@ -6,11 +6,13 @@ namespace Cue.Inputs
     public class CueTouchController : CueInputController
     {
         private Vector2 _touchDeltaPositionInput;
+        private int _touchCountInput;
 
         public override void OnInputForClient(IInputWriter writer)
         {
             writer.Write(_touchDeltaPositionInput.x);
             writer.Write(_touchDeltaPositionInput.y);
+            writer.Write(_touchCountInput);
         }
 
         public override void Update()
@@ -18,6 +20,8 @@ namespace Cue.Inputs
             if (Elympics.Player != PredictableFor)
                 return;
 
+            _touchCountInput = Input.touchCount;
+            
             if (Input.touchCount < 1)
                 return;
 
@@ -35,7 +39,11 @@ namespace Cue.Inputs
 
             reader.Read(out float horizontal);
             reader.Read(out float vertical);
+            reader.Read(out int touchCount);
 
+            if (touchCount == 0)
+                return;
+            
             MovementHandler.HandleMovement(new Vector2(horizontal, vertical), Elympics.TickDuration);
         }
     }

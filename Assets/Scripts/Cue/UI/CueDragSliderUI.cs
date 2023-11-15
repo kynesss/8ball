@@ -40,7 +40,7 @@ namespace Cue.UI
         private void OnOtherPlayerTurn()
         {
             DragSlider.interactable = false;
-            DragSlider.SetValueWithoutNotify((PlayerManager.GetCurrentPlayer().Power));
+            DragSlider.SetValueWithoutNotify(PlayerManager.GetCurrentPlayer().Power);
         }
 
         private void DragSlider_ValueChanged(float value)
@@ -60,10 +60,11 @@ namespace Cue.UI
 
         public void PointerUp()
         { 
-            if (!GameManager.IsMyTurn) 
+            DragSlider.value = 0f;
+            
+            if (!GameManager.IsMyTurn)
                 return;
             
-            DragSlider.value = 0f;
             PlayerManager.LocalPlayer.IsDragging = false;
         }
     }

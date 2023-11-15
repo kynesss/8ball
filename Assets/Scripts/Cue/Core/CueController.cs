@@ -19,8 +19,13 @@ namespace Cue.Core
         [Inject] public CuePhysics Physics { get; }
         [Inject.FromChildren] private MonoBehaviour[] Handlers { get; }
         [Inject.FromChildren] private CueVisuals CueVisuals { get; }
-
         private bool IsCurrentPlayer => (int)PredictableFor == PlayerManager.CurrentPlayerId;
+        
+        private void Start()
+        {
+            Physics.BallHit += () => SetHandlersEnabled(false);
+            SetHandlersEnabled(IsCurrentPlayer);
+        }
 
         private void OnEnable()
         {
@@ -32,11 +37,6 @@ namespace Cue.Core
             GameManager.TurnChanged -= GameManager_OnTurnChanged;
         }
 
-        private void Start()
-        {
-            SetHandlersEnabled(IsCurrentPlayer);
-        }
-        
         private void GameManager_OnTurnChanged()
         {
             SetHandlersEnabled(IsCurrentPlayer);
