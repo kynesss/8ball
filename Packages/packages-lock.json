@@ -254,6 +254,13 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.yasirkula.ingamedebugconsole": {
+      "version": "https://github.com/yasirkula/UnityIngameDebugConsole.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3984f638763f7842760c9d616ec7f715169a5337"
+    },
     "nuget.mono-cecil": {
       "version": "1.0.0",
       "depth": 1,
