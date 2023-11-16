@@ -42,7 +42,12 @@ namespace Cue.Inputs
             reader.Read(out int touchCount);
 
             if (touchCount == 0)
+            {
+                Debug.Log("Touch count 0");
                 return;
+            }
+            
+            Debug.Log($"Touch position: {new Vector2(horizontal, vertical)}");
             
             MovementHandler.HandleMovement(new Vector2(horizontal, vertical), Elympics.TickDuration);
         }
