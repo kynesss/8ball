@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3718fdc79f884b648722df4e56317063, type: 3}
   m_Name: ElympicsGameConfig
   m_EditorClassIdentifier: 
-  gameName: Game
-  gameId: fe9b83a9-7d50-4299-859a-93fd313f420b
-  gameVersion: 1
+  gameName: 8Ball
+  gameId: 5cf90c41-efc0-4c18-9e47-d0125cbea826
+  gameVersion: 1.3
   players: 2
   gameplayScene: Assets/Scenes/GameScene.unity
   gameplaySceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-  botsInServer: 1
+  botsInServer: 0
   useWeb: 0
   legacyMatchmakingClient: 0
   enableReconnect: 0
@@ -36,20 +36,20 @@ MonoBehaviour:
   maxClientTickRateFactor: 1.25
   snapshotSendingPeriodInTicks: 1
   inputLagTicks: 2
-  maxAllowedLagInTicks: 15
+  maxAllowedLagInTicks: 60
   prediction: 1
-  predictionLimitInTicks: 8
+  predictionLimitInTicks: 60
   detailedNetworkLog: 0
-  mode: 1
+  mode: 2
   halfRemoteMode: 0
   useWebInHalfRemote: 0
-  ipForHalfRemoteMode: 127.0.0.1
+  ipForHalfRemoteMode: 192.168.1.8
   tcpPortForHalfRemoteMode: 9101
   webPortForHalfRemoteMode: 9102
   playerIndexForHalfRemoteMode: 1
   testMatchData:
-    queueName: 
-    regionName: 
+    queueName: Test
+    regionName: warsaw
   testPlayers:
   - userId: 0
     isBot: 0

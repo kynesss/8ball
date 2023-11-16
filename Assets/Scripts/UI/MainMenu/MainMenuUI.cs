@@ -1,6 +1,4 @@
-using System;
 using Elympics;
-using GDT.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,32 +6,33 @@ namespace UI.MainMenu
 {
     public class MainMenuUI : MonoBehaviour
     {
-        [SerializeField] private Button halfRemoteButton;
+        [Header("Half remote")]
+        [SerializeField] private Button halfRemoteServerButton;
+        [SerializeField] private Button halfRemoteClientButton;
+
+        [Header("Matchmaking")] 
+        [SerializeField] private Button matchmakingButton;
 
         private void Awake()
         {
-            halfRemoteButton.onClick.AddListener(HalfRemoteButton_OnClick);
+            halfRemoteServerButton.onClick.AddListener(HalfRemoteServerButton_OnClick);
+            halfRemoteClientButton.onClick.AddListener(HalfRemoteClientButton_OnClick);
+            matchmakingButton.onClick.AddListener(MatchmakingButton_OnClick);
         }
-        
-        private void HalfRemoteButton_OnClick()
-        {
-            var halfRemoteMode = ElympicsGameConfig.GetHalfRemoteMode(ElympicsGameConfig.HalfRemoteModeEnum.Server);
 
-            switch (halfRemoteMode)
-            {
-                case ElympicsGameConfig.HalfRemoteModeEnum.Client:
-                    DebugX.Log("Starting HalfRemote Client");
-                    ElympicsLobbyClient.Instance.PlayHalfRemote(ElympicsGameConfig.GetHalfRemotePlayerIndex(0));
-                    break;
-                case ElympicsGameConfig.HalfRemoteModeEnum.Server:
-                    DebugX.Log("Starting HalfRemote Server");
-                    ElympicsLobbyClient.Instance.StartHalfRemoteServer();
-                    break;
-                case ElympicsGameConfig.HalfRemoteModeEnum.Bot:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+        private void HalfRemoteServerButton_OnClick()
+        {
+            ElympicsLobbyClient.Instance.StartHalfRemoteServer();
+        }
+
+        private void HalfRemoteClientButton_OnClick()
+        {
+            ElympicsLobbyClient.Instance.PlayHalfRemote(1);
+        }
+
+        private void MatchmakingButton_OnClick()
+        {
+            ElympicsLobbyClient.Instance.PlayOnlineInRegion("warsaw", null, null, "Test");
         }
     }
 }
